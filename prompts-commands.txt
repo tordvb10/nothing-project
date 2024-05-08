@@ -27,9 +27,7 @@ vercel login
 >>
 
 <<lazygits:
-Users\tordv> git config --global alias
-error: key does not contain a section: alias
-PS C:\Users\tordv> git config --get-regexp alias
+git config --get-regexp alias
 git config --global alias.acp '!f() { git add . && git commit -m "$@" && git push; }; f'
 git config --global alias.acpp '!f() { git add . && git commit -m "$@" && git push && git pull --all; }; f'
 git config --global alias.cpp '!f() { git commit -m "$@" && git push && git pull --all; }; f'
