@@ -1,0 +1,54 @@
+<<installs:
+winget install --id Microsoft.Powershell --source winget
+winget install --id Microsoft.Powershell.Preview --source winget
+winget install --id Git.Git -e --source winget
+winget install --id GitHub.cli
+winget install -e --id OpenJS.NodeJS
+winget install jqlang.jq
+
+npm i -g vercel@latest
+>>
+
+<<ssh-keys:
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+cat ~/.ssh/id_rsa.pub | clip
+>>
+
+<<create projects:
+npx create-next-app@latest
+npm create vite@latest
+>>
+
+<<logins:
+git config --global user.name "username"
+git config --global user.email "username@example.com"
+gh auth login
+vercel login
+>>
+
+<<lazygits:
+Users\tordv> git config --global alias
+error: key does not contain a section: alias
+PS C:\Users\tordv> git config --get-regexp alias
+git config --global alias.acp '!f() { git add . && git commit -m "$@" && git push; }; f'
+git config --global alias.acpp '!f() { git add . && git commit -m "$@" && git push && git pull --all; }; f'
+git config --global alias.cpp '!f() { git commit -m "$@" && git push && git pull --all; }; f'
+git config --global alias.cp '!f() { git commit -m "$@" && git push; }; f'
+git config --global alias.ac '!f() { git add . && git commit -m "$@"; }; f'
+>>
+
+<<creating project from prompt:
+vercel deploy
+vercel > deployment-url.txt
+cat deployment-url | clip // to clipboard
+
+* git add . git commit -m "first" *
+
+gh repo create nothing-project --public --source=. --remote=origin --push
+gh api repos/tordvb10/nothing-project -F homepage=https://nothing-project-ceh7zpksu-tordvb10s-projects.vercel.app // ctrl + v to paste url
+>>
+
+<<test:
+winget install jqlang.jq
+gh api repos/tordvb10/nothing-project | jq -r '.url' | clip
+>>
