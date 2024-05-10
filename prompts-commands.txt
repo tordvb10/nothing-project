@@ -65,6 +65,18 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Default
 >>
 
+<<ssms
+Opened Registry Editor (regedit.exe).
+
+    Went to Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\stornvme\Parameters\Device.
+
+    Added a Multi-String Value ForcedPhysicalSectorSizeInBytes.
+
+    Set the value to * 4096 (not * 4095 as originally suggested by Microsoft's guide).
+
+    Restarted the computer, and the LocalDB instance started successfully.
+>>
+
 <<test:
 winget install jqlang.jq
 gh api repos/tordvb10/nothing-project | jq -r '.url' | clip
