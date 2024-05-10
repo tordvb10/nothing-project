@@ -9,6 +9,19 @@ winget install jqlang.jq
 npm i -g vercel@latest
 >>
 
+<<toBeOpen:
+code .
+start <filedocuments.txt>
+>>
+
+<<toBeDeleted:
+rm -r folder-name
+>>
+
+<<no-funds:
+npm config set fund false --location=global
+>>
+
 <<ssh-keys:
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 cat ~/.ssh/id_rsa.pub | clip
@@ -44,9 +57,16 @@ cat deployment-url | clip // to clipboard
 
 gh repo create nothing-project --public --source=. --remote=origin --push
 gh api repos/tordvb10/nothing-project -F homepage=https://nothing-project-ceh7zpksu-tordvb10s-projects.vercel.app // ctrl + v to paste url
+vercel git connect
+>>
+
+<<powershell security error:
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Default
 >>
 
 <<test:
 winget install jqlang.jq
 gh api repos/tordvb10/nothing-project | jq -r '.url' | clip
 >>
+
