@@ -63,6 +63,7 @@ vercel git connect
 <<powershell security error:
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Default
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 >>
 
 <<ssms
@@ -76,6 +77,41 @@ Opened Registry Editor (regedit.exe).
 
     Restarted the computer, and the LocalDB instance started successfully.
 >>
+
+<<functions-in-PowerShell
+function Get-FolderSize {
+    param (
+        [string]$FolderPath = (Get-Location).Path
+    )
+
+    $size = (Get-ChildItem -Path $FolderPath -Recurse -File | Measure-Object -Property Length -Sum).Sum
+    $prefixes = "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"
+    $index = 0
+
+    while ($size -ge 1024 -and $index -lt $prefixes.Count - 1) {
+        $size /= 1024
+        $index++
+    }
+
+    $sizeFormatted = "{0:N2} {1}" -f $size, $prefixes[$index]
+    Write-Host "Folder Size: $sizeFormatted"
+}
+New-Alias -Name GetFolderSize -Value Get-FolderSize
+(Get-Command Get-FolderSize).ScriptBlock
+Remove-Item Alias:GetFolderSize
+>>
+
+<<pathToPowerShell:
+C:\Users\tordv\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk
+>>
+
+<<$ProfilePowershell:
+New-Item -Path $PROFILE -ItemType File -Force
+notepad $PROFILE
+	<<commands in @PROFILE path:
+	. $env:MyDir\Bin.ps1
+	>>
+>>	
 
 <<test:
 winget install jqlang.jq
