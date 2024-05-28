@@ -52,6 +52,8 @@ git config --global alias.ac '!f() { git add . && git commit -m "$@"; }; f'
 vercel deploy
 vercel > deployment-url.txt
 cat deployment-url | clip // to clipboard
+Get-Content deployment-url.txt | Set-Clipboard
+
 
 * git add . git commit -m "first" *
 
@@ -118,3 +120,14 @@ winget install jqlang.jq
 gh api repos/tordvb10/nothing-project | jq -r '.url' | clip
 >>
 
+<<dotnet:
+dotnet tool install --global dotnet-ef
+dotnet restore: run this after any added dependecies!
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+dotnet-ef migrations add InitialCreate --project .\BuberBreakfast\
+dotnet-ef database update --project .\BuberBreakfast\
+
+>>
