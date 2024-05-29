@@ -130,4 +130,19 @@ dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
 dotnet-ef migrations add InitialCreate --project .\BuberBreakfast\
 dotnet-ef database update --project .\BuberBreakfast\
 
+	<<dotnet create:
+	dotnet new sln -o "project-name"
+	dotnet new classlib -o "project-name".Contracts
+	dotnet new webapi -o "project-name"
+	dotnet build
+	more *sln \\ "*sln" stjerne-tegnet gjør at det itereres mellom domenen gitt etter, i mappen man er i.
+	dotnet sln add .\"project-name".Contracts\ .\"project-name"\
+	cd "project-name"
+	dotnet add package Microsoft.EntityFrameworkCore.Design
+	dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+	dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+	cd ..\
+	devenv .
+	>>
+
 >>
