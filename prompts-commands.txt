@@ -5,6 +5,7 @@ winget install --id Git.Git -e --source winget
 winget install --id GitHub.cli
 winget install -e --id OpenJS.NodeJS
 winget install jqlang.jq
+winget install --id GNU.Wget2 --source winget
 
 npm i -g vercel@latest
 >>
