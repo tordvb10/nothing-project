@@ -144,6 +144,10 @@ dotnet-ef database update --project .\BuberBreakfast\
 	dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
 	cd ..\
 	devenv .
+	wget https://raw.githubusercontent.com/github/gitignore/main/VisualStudio.gitignore -O .gitignore
+	New-Item -ItemType File Docs\Api.md
+	devenv /edit Docs\Api.md // opens file in current vs-window.
+	
 	>>
 
 >>
