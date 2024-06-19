@@ -47,6 +47,8 @@ git config --global alias.acpp '!f() { git add . && git commit -m "$@" && git pu
 git config --global alias.cpp '!f() { git commit -m "$@" && git push && git pull --all; }; f'
 git config --global alias.cp '!f() { git commit -m "$@" && git push; }; f'
 git config --global alias.ac '!f() { git add . && git commit -m "$@"; }; f'
+git config --global alias.pacp '!f() { git pull --all && git add . && git commit -m "$@" && git push &&; }; f'
+git config --global alias.pcp '!f() { git pull --all && git commit -m "$@" && git push &&; }; f'
 >>
 
 <<creating project from prompt:
@@ -119,6 +121,14 @@ notepad $PROFILE
 <<test:
 winget install jqlang.jq
 gh api repos/tordvb10/nothing-project | jq -r '.url' | clip
+>>
+
+<<webapi-setup:
+dotnet new webapi -n ProjectName
+dotnet restore
+dotnet new sln -n ProjectName
+dotnet sln ProjectName.sln add .\ProjectName.csproj
+devenv ProjectName.sln
 >>
 
 <<dotnet:
