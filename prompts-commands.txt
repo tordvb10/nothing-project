@@ -31,6 +31,7 @@ cat ~/.ssh/id_rsa.pub | clip
 <<create projects:
 npx create-next-app@latest
 npm create vite@latest
+npm install @mui/material @emotion/react @emotion/styled
 >>
 
 <<logins:
@@ -52,6 +53,8 @@ git config --global alias.pcp '!f() { git pull --all && git commit -m "$@" && gi
 >>
 
 <<creating project from prompt:
+npm install -g vercel
+vercel --version
 vercel deploy
 vercel > deployment-url.txt
 cat deployment-url | clip // to clipboard
@@ -61,7 +64,7 @@ Get-Content deployment-url.txt | Set-Clipboard
 * git add . git commit -m "first" *
 
 gh repo create nothing-project --public --source=. --remote=origin --push
-gh api repos/tordvb10/nothing-project -F homepage=https://nothing-project-ceh7zpksu-tordvb10s-projects.vercel.app // ctrl + v to paste url
+gh api repos/tordvb10/nothing-project -F homepage=https://konservativt-ls72l60u1-tordvb10s-projects.vercel.app // ctrl + v to paste url
 vercel git connect
 >>
 
@@ -125,9 +128,11 @@ gh api repos/tordvb10/nothing-project | jq -r '.url' | clip
 
 <<webapi-setup:
 dotnet new webapi -n ProjectName
+cd ProjectName
 dotnet restore
 dotnet new sln -n ProjectName
 dotnet sln ProjectName.sln add .\ProjectName.csproj
+wget -O .gitignore https://raw.githubusercontent.com/github/gitignore/master/VisualStudio.gitignore
 devenv ProjectName.sln
 >>
 
