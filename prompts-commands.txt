@@ -25,7 +25,8 @@ npm config set fund false --location=global
 
 <<ssh-keys:
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-cat ~/.ssh/id_rsa.pub | clip
+gh auth refresh -h github.com -s admin:public_key
+gh api -X POST /user/keys -f title=$env:COMPUTERNAME -f key="$(cat ~/.ssh/id_rsa.pub)"
 >>
 
 <<create projects:
