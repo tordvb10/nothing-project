@@ -42,8 +42,6 @@ gh auth login
 vercel login
 >>
 
-test
-
 <<lazygits:
 git config --get-regexp alias
 git config --global alias.acp '!f() { git add . && git commit -m "$@" && git push; }; f'
