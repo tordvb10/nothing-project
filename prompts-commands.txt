@@ -6,6 +6,7 @@ winget install --id GitHub.cli
 winget install -e --id OpenJS.NodeJS
 winget install jqlang.jq
 winget install --id GNU.Wget2 --source winget
+winget install GnuPG.Gpg4win
 
 npm i -g vercel@latest
 >>
@@ -134,6 +135,9 @@ dotnet restore
 dotnet new sln -n ProjectName
 dotnet sln ProjectName.sln add .\ProjectName.csproj
 wget -O .gitignore https://raw.githubusercontent.com/github/gitignore/master/VisualStudio.gitignore
+git init
+git ac "first"
+gh repo create ProjectName --public --source=. --remote=origin --push
 devenv ProjectName.sln
 >>
 
