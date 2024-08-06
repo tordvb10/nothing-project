@@ -16,6 +16,25 @@ code .
 start <filedocuments.txt>
 >>
 
+<<setup gpg-key:
+gpg --full-generate-key 	## Follow through the navigated prompts ##
+gpg --list-secret-keys --keyid-format LONG 	## choose the name after 
+
+gpg --list-secret-keys --keyid-format LONG | ForEach-Object {
+     if ($_ -match 'sec\s+rsa4096\/(\w{16})') {
+         $matches[1]
+     } 		## returns the value I want, set it to var-name: GpgKeyName ##
+
+gh auth refresh -s write:gpg_key
+gpg --armor --export GpgKeyName | gh gpg-key add -
+gpgconf --launch gpg-agent
+git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"  	## Or your path to gpg.exe ##
+git config --global user.signingkey GpgKeyName
+git config --global commit.gpgSign true
+
+
+>>
+
 <<toBeDeleted:
 rm -r folder-name
 >>
