@@ -45,6 +45,12 @@ gpg --armor --export gpg --list-secret-keys --keyid-format LONG | ForEach-Object
 
 >>
 
+<<starting-up-taskscheduler:
+(wmic useraccount get name,sid) -split "`n" | ForEach-Object { if ($_ -and $_ -notmatch 'Name|SID') { $parts = $_ -split '\s{2,}'; if ($parts[0].Trim() -eq $env:USERNAME) { Write-Output $parts[1].Trim()}}} | Set-Clipboard
+$env:COMPUTERNAME | Set-Clipboard
+
+>>
+
 <<toBeDeleted:
 rm -r folder-name
 >>
