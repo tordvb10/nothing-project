@@ -34,11 +34,13 @@ start <filedocuments.txt>
 		gh gpg-key add .\gpg-key.asc
 	OR:
 	gpg --import gpg-key.asc
+	gpg --export-secret-keys YOUR_KEY_ID > gpg-private-key.asc
 	gpg --import gpg-private-key.asc
 gpgconf --launch gpg-agent
 git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"  	## Or your path to gpg.exe ##
 git config --global user.signingkey GpgKeyName
 git config --global commit.gpgSign true
+
 
 test:
 gpg --armor --export gpg --list-secret-keys --keyid-format LONG | ForEach-Object {if ($_ -match 'sec\s+rsa4096\/(\w{16})') {$matches[1]}} | gh gpg-key add -
